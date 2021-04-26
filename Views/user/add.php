@@ -29,10 +29,12 @@ include("../header.php");
       value=""
     />
     <div class="inputError"></div>
+    <label for="avatar">Choissisez Votre Avatar</label>
     <input type="file" name="avatar" id="avatar" />
     <div class="inputError"></div>
-    <label for="rgdp">En cliquand sur case vous acceptez les CGU.</label>
     <input type="checkbox" name="rgpd" id="rgpd" />
+    <label for="rgdp">En cliquand sur case vous acceptez les CGU.</label>
+    
     <div class="inputError"></div>
     <input type="submit" value="Envoyer" />
   </form>
