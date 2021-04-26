@@ -12,11 +12,12 @@ class UserController
     private $_avatar;
     private $_role;
     private $_created_at;
-    public $erreur = [];
+    public static $erreur = [];
 
     public static function validator($post, $files)
     {
         if (!empty($post) && isset($post)) {
+            var_dump($post, $files);
             $post['name'] = self::verifInput('name', true);
             $post['email'] = self::verifInput('email', true);
             if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
@@ -29,7 +30,7 @@ class UserController
             }
             $post['role'] = "role_user";
             $post['created_at'] = date('Y-m-d');
-            var_dump($post, self::$erreur);
+
 
             if (count(self::$erreur) === 0) {
             }
@@ -43,6 +44,7 @@ class UserController
         } else {
 
             if ($obligatoire) {
+                var_dump($input);
                 $retour = "";
                 self::$erreur[$input] = "Le champ $input n'est pas rempli.";
             } else {
