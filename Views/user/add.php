@@ -11,7 +11,7 @@ $form = UserController::validator($_POST, $_FILES);
 
 <h1>Inscrivez-vous</h1>
 <div id="formUser">
-    <form class="formulaire" action="add.php" method="post" enctype="mutipart/form-data">
+    <form class="formulaire" action="add.php" method="post" enctype="multipart/form-data">
         <input type="text" name="name" id="name" placeholder="Nom" value="" />
         <div class="inputError"></div>
         <input type="email" name="email" id="email" placeholder="Email" value="" />

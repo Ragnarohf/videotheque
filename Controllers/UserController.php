@@ -30,6 +30,18 @@ class UserController
             }
             $post['role'] = "role_user";
             $post['created_at'] = date('Y-m-d');
+            if (!empty($post["rgpd"]) && $post['rgpd'] !== 'on') {
+                self::$erreur['rgpd'] = "Merci de cocher la case rgpd";
+            }
+            //detection de la conformité de l'avatar;
+            if ($files['avatar']['size'] > 0 && $files['avatar']['error'] === 0) {
+                if ($files['avatar']['type'] === "image/png" || $files['avatar']['type'] === "image/jpeg" || $files['avatar']['type'] === "image/jpg" || $files['avatar']['type'] === "image/gif" || $files['avatar']['type'] === "image/webp") {
+                    $post['avatar'] = $files["avatar"]["tmp_name"];
+                } else {
+                    self::$erreur["avatar"] = "Le fichier avatar n'est pas au bon format.";
+                }
+            }
+
 
 
             if (count(self::$erreur) === 0) {
