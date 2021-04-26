@@ -56,7 +56,7 @@ class UserController
                 var_dump(self::$erreur);
                 $user = new UserModel();
                 //verifier la presence d'un mail identique attributs ["email"=>$post['email']]
-                $return = $user->findBy(["email" => $post['email']]);
+                $return = $user->findBy(['email' => $post['email']]);
                 //var_dump($return);
                 if (!$return) {
                     // trouver un moyen de recuperer l'id_user de mon nouvel enregistrement

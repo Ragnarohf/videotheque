@@ -7,7 +7,7 @@ use App\Models\DB;
 class Model extends DB
 {
     protected $table;
-    private $db;
+    protected $db;
 
     public function requete(string $sql, array $attributs = Null)
     {
