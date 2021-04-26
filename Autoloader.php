@@ -19,10 +19,8 @@ class Autoloader
         $classe = $classe . '.php';
 
         $fichier = __DIR__ . "/" . $classe;
-        if(file_exists($fichier)){
+        if (file_exists($fichier)) {
             require $fichier;
-
         }
-        
     }
 }
