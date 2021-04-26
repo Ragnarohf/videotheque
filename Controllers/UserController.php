@@ -32,19 +32,20 @@ class UserController
             }
             $post['role'] = "role_user";
             $post['created_at'] = date('Y-m-d');
-            if (!empty($post['rgdp'])) {
+
+
+            if (!empty($post['rgpd'])) {
                 if ($post['rgpd'] !== 'on') {
-                    self::$erreur['rgpd'] = "Merci de cocher la case rgpd";
+                    self::$erreur['rgpd'] = "Merci de cocher la case rgpd!";
                 }
             } else {
-                self::$erreur['rgpd'] = "Merci de cocher la case rgpd";
+                self::$erreur['rgpd'] = "Merci de cocher la case rgpd!";
             }
-
 
             //detection de la conformité de l'avatar;
             if ($files['avatar']['size'] > 0 && $files['avatar']['error'] === 0) {
                 if ($files['avatar']['type'] === "image/png" || $files['avatar']['type'] === "image/jpeg" || $files['avatar']['type'] === "image/jpg" || $files['avatar']['type'] === "image/gif" || $files['avatar']['type'] === "image/webp") {
-                    $post['avatar'] = $files["avatar"]["tmp_name"];
+                    $post['avatar'] = $files["avatar"];
                 } else {
                     self::$erreur["avatar"] = "Le fichier avatar n'est pas au bon format.";
                 }
