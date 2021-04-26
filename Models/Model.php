@@ -77,8 +77,10 @@ class Model extends DB
 
         $requete = $this->requete("DELETE  from $this->table where $meschamps", $attributs);
     }
-    public function insert($attributs)
+    public function insert(array $attributs)
     {
-        $requete = $this->requete("INSERT INTO  from $this->table where $meschamps", $attributs);
+        return $attributs;
+        // $requete = $this->requete("INSERT INTO  $this->table (champs)VALUES (valeurs));
+
     }
 }

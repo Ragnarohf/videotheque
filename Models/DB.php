@@ -14,7 +14,7 @@ class DB extends PDO
     private const PWD = "";
     private const DBNAME = "videotheque";
 
-    private function __construct()
+    public function __construct()
     {
         //DSN
         $_dsn = "mysql:host=" . self::DBHOST . ";dbname=" . self::DBNAME;

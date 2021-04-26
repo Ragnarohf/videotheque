@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class UserModel
+use App\Models\Model;
+
+class UserModel extends Model
 {
     private $_id_user; // obligatoire
     private $_name; // obligatoire
