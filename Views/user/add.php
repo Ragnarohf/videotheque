@@ -2,13 +2,16 @@
 require_once("../../Autoloader.php");
 
 use App\Autoloader;
+use App\Controllers\UserController;
 
+Autoloader::register();
 include("../header.php");
+$form = UserController::validator($_POST, $_FILES);
 ?>
 
 <h1>Inscrivez-vous</h1>
 <div id="formUser">
-    <form class="formulaire" action="registration.php" method="post" enctype="mutipart/form-data">
+    <form class="formulaire" action="add.php" method="post" enctype="mutipart/form-data">
         <input type="text" name="name" id="name" placeholder="Nom" value="" />
         <div class="inputError"></div>
         <input type="email" name="email" id="email" placeholder="Email" value="" />

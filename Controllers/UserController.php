@@ -14,25 +14,29 @@ class UserController
     private $_created_at;
     public $erreur = [];
 
-    public function validator($post, $files)
+    public static function validator($post, $files)
     {
         if (!empty($post) && isset($post)) {
-            $post['name'] = $this->verifInput('name', true);
-            $post['email'] = $this->verifInput('email', true);
+            $post['name'] = self::verifInput('name', true);
+            $post['email'] = self::verifInput('email', true);
             if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
                 self::$erreur["email"] = "L'adresse Mail n'est pas valide";
             }
-            $post['pwd'] = $this->verifInput('pwd', true);
-            $post['pwd2'] = $this->verifInput('pwd2', true);
+            $post['pwd'] = self::verifInput('pwd', true);
+            $post['pwd2'] = self::verifInput('pwd2', true);
             if ($post['pwd'] !== $post['pwd2']) {
                 self::$erreur["pwd"] = "Les deux mots de passes ne correspondent pas!";
             }
             $post['role'] = "role_user";
             $post['created_at'] = date('Y-m-d');
+            var_dump($post, self::$erreur);
+
+            if (count(self::$erreur) === 0) {
+            }
         }
     }
 
-    public function verifInput($input, $obligatoire = false, $type = false)
+    public static function verifInput($input, $obligatoire = false, $type = false)
     {
         if (!empty($_POST[$input]) && isset($_POST[$input])) {
             $retour = trim(strip_tags($_POST[$input]));
