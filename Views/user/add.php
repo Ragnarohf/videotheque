@@ -1,10 +1,12 @@
 <?php
+require_once("../../Autoloader.php");
+use App\Autoloader;
 include("../header.php");
 ?>
 
 <h1>Inscrivez-vous</h1>
 <div id="formUser">
-  <form class="formulaire" action="registration.php" method="post">
+  <form class="formulaire" action="registration.php" method="post" enctype="mutipart/form-data">
     <input type="text" name="name" id="name" placeholder="Nom" value="" />
     <div class="inputError"></div>
     <input type="email" name="email" id="email" placeholder="Email" value="" />
