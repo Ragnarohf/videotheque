@@ -86,11 +86,14 @@ class UserController
                         $image->save('../../public/assets/img/upload/' . $lastId . "." . $ext[1]);
                         // update->inserer dans la nouvelle url de l'avatar
                         $user->update(['avatar' => $lastId . "." . $ext[1]], ['id_user' => $lastId]);
+                        header("Location:../home.php");
                     }
                 } else {
                     self::$erreur['email'] = 'cet utilisateur est deja enregistré.';
                 }
             }
+            //renvoie un tableau et les donnes des user deja envoyé 
+            return [self::$erreur, $post];
         }
         var_dump(self::$erreur);
     }
