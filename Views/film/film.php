@@ -31,26 +31,27 @@ if (!empty($_GET['id'])) {
                         <?php } else { ?>
                             <img src="https://picsum.photos/220/330" class="card-img-top" alt="...">
                         <?php } ?>
-                        <p><?= $film[0]->genres ?> - <?= $film[0]->year ?></p>
-                        <p>casting : <?= $film[0]->cast ?></p>
-                        <p><?= $film[0]->title ?>
-                        </p>
-                        <p id='rating'>
-                            <?php for ($i = 0; $i < $film[0]->rating; $i++) { ?>
-                                <span class="star"><img src="../../public/assets/img/star-solid.svg" style="max-width: 30px;"></span>
-                            <?php } ?>
-                        </p>
+
                     </div>
-
-
+                    <p><?= $film[0]->genres ?> - <?= $film[0]->year ?></p>
+                    <p>casting : <?php
+                                    foreach ($film[0]->cast as $value) { ?>
+                            <a href="filmListBy.php?key=cast&value=<?= $value ?>"><?= $value ?></a>
+                        <?php } ?>
+                    </p>
+                    <p><?= $film[0]->directors ?></p>
+                    <p id='rating'>
+                        <?php for ($i = 0; $i < $film[0]->rating; $i++) { ?>
+                            <span class="star"><img src="../../public/assets/img/star-solid.svg" style="max-width: 30px;"></span>
+                        <?php } ?>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <section>
-    <?php include('randomFilm.php'); ?>
+    <?php include("randomFilm.php"); ?>
 </section>
 <?php
-include("../footer.php")
-?>
+include("../footer.php");
