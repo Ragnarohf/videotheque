@@ -6,6 +6,7 @@ use App\Autoloader;
 use App\Controllers\FilmController;
 
 Autoloader::register();
+
 include("../header.php");
 $filmController = new FilmController;
 $listeFilm = $filmController->list("title", 0, 20);
