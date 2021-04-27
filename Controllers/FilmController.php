@@ -29,4 +29,10 @@ class FilmController
 
         return $resultFilmModel;
     }
+    public function randomFilm($num)
+    {
+        $filmModel = new FilmModel;
+        $randomFilm = $filmModel->randomFilm($num);
+        return  $randomFilm;
+    }
 }

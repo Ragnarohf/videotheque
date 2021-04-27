@@ -1,22 +1,33 @@
-<div class="content">
-    <h3>Fresh <span>Movies</span></h3>
-    <ul class="movies">
-        <li>
-            <h4>Toy Story 3</h4><img src="images/1page-img2.jpg" alt="" />
-            <p>Check out Disney-Pixar's official Toy Story site, watch the <span>Toy Story 3</span> trailer, and meet new characters. Remember, no toy gets left behind!</p>
-            <div class="wrapper"><a href="#" class="link2"><span><span>Read More</span></span></a></div>
-        </li>
-        <li>
-            <h4>Prince of Percia: Sands of Time</h4><img src="images/1page-img3.jpg" alt="" />
-            <p>A young fugitive prince and princess must stop a villain who unknowingly threatens to destroy the world with a special dagger.</p>
-            <div class="wrapper"><a href="#" class="link2"><span><span>Read More</span></span></a></div>
-        </li>
-        <li class="last">
-            <h4>The Twilight Saga: Eclipse</h4><img src="images/1page-img4.jpg" alt="" />
-            <p>As a string of mysterious killings grips Bella is forced to choose between her love for vampire Edward and her friendship with werewolf Jacob.</p>
-            <div class="wrapper"><a href="#" class="link2"><span><span>Read More</span></span></a></div>
-        </li>
-        <li class="clear">&nbsp;</li>
-    </ul>
-</div>
-</div>
+<?php
+require_once("../../Autoloader.php");
+
+use App\Autoloader;
+
+Autoloader::register();
+
+use App\Controllers\FilmController;
+
+$filmController = new FilmController;
+$randomFilm = $filmController->randomFilm(3);
+
+?>
+<section class="d-flex justify-content-between flex-wrap container">
+    <?php
+    for ($i = 0; $i < count($randomFilm); $i++) { ?>
+        <div class="card my-2" style="width: 14rem;">
+            <?php if (file_exists("../../public/assets/img/posters/" . $randomFilm[$i]->id . ".jpg")) { ?>
+                <img class="card-img-top" src="../../public/assets/img/posters/<?= $randomFilm[$i]->id ?>.jpg" alt="Card image cap">
+            <?php } else { ?>
+                <img class="card-img-top" src="https://picsum.photos/220/330" alt="Card image cap">
+            <?php } ?>
+            <div class="card-body">
+                <h5 class="card-title"><?= $randomFilm[$i]->title ?></h5>
+                <p class="card-text"><?= $randomFilm[$i]->directors ?> - <?= $randomFilm[$i]->year ?></p>
+                <p class="card-text"><?= $randomFilm[$i]->genres ?></p>
+                <p class="card-text"><?= $randomFilm[$i]->cast ?></p>
+                <p class="card-text"><?= substr($randomFilm[$i]->plot, 0, 100) . "..." ?></p>
+                <a href="film.php?id=<?= $randomFilm[$i]->id ?>" class="btn btn-primary">Voir le film</a>
+            </div>
+        </div>
+    <?php } ?>
+</section>

@@ -32,13 +32,10 @@ if (!empty($_GET['id'])) {
                             <img src="https://picsum.photos/220/330" class="card-img-top" alt="...">
                         <?php } ?>
 
-                        This website template can be delivered in two packages - with PSD source files included and
-                        without them. If you need PSD source files, please go to the template download page at
-                        TemplateMonster to leave the e-mail address that you want the template ZIP package to be
-                        delivered to.
                     </div>
-                    <p>This website template has several pages: <a href="index.html">Home</a>, <a href="about-us.html">About us</a>, <a href="articles.html">Articles</a> (with Article page),
-                        <a href="contact-us.html">Contact us</a> (note that contact us form – doesn’t work), <a href="sitemap.html">Site Map</a>.
+                    <p><?= $film[0]->genres ?> - <?= $film[0]->year ?>
+                    <p>casting : <?= $film[0]->cast ?>
+                    <p><?= $film[0]->title ?>
                     </p>
                     <p id='rating'>
                         <?php for ($i = 0; $i < $film[0]->rating; $i++) { ?>
@@ -50,3 +47,9 @@ if (!empty($_GET['id'])) {
         </div>
     </div>
 </section>
+<section>
+    <?php include('randomFilm.php'); ?>
+</section>
+<?php
+include("../footer.php")
+?>
