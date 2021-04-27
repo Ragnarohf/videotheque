@@ -18,4 +18,15 @@ class FilmController
 
         return $resultFilmModel;
     }
+    public function film($id)
+    {
+        $filmModel = new FilmModel;
+        $resultFilmModel = $filmModel->findby(["id" => $id]);
+        $rating = $resultFilmModel[0]->rating;
+        $rating = ceil($rating / 20);
+        $resultFilmModel[0]->rating = $rating;
+        var_dump($rating);
+
+        return $resultFilmModel;
+    }
 }
