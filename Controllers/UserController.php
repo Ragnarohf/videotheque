@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
+require_once("../../vendor/autoload.php");
+
+use Gumlet\ImageResize;
+
 class UserController
 {
     private $_id_user; // obligatoire
@@ -29,6 +33,8 @@ class UserController
             $post['pwd2'] = self::verifInput('pwd2', true);
             if ($post['pwd'] !== $post['pwd2']) {
                 self::$erreur["pwd"] = "Les deux mots de passes ne correspondent pas!";
+            } else {
+                $post['pwd'] = password_hash($post['pwd'], PASSWORD_DEFAULT);
             }
             $post['role'] = "role_user";
             $post['created_at'] = date('Y-m-d');
@@ -71,10 +77,15 @@ class UserController
                     $lastId = $tbUser[$max]->id_user;
                     var_dump($lastId);
                     // echo ROOT./public/assets/img/upload
-                    if (count($post['avatar']) > 0) {
+                    if (!empty($post['avatar']) && isset($post['avatar'])) {
                         $ext = explode("/", $post['avatar']['type']);
                         var_dump($ext[1]);
                         move_uploaded_file($post['avatar']['tmp_name'], '../../public/assets/img/upload/' . $lastId . "." . $ext[1]);
+                        $image = new ImageResize('../../public/assets/img/upload/' . $lastId . "." . $ext[1]);
+                        $image->resizeToWidth(150);
+                        $image->save('../../public/assets/img/upload/' . $lastId . "." . $ext[1]);
+                        // update->inserer dans la nouvelle url de l'avatar
+                        $user->update(['avatar' => $lastId . "." . $ext[1]], ['id_user' => $lastId]);
                     }
                 } else {
                     self::$erreur['email'] = 'cet utilisateur est deja enregistré.';
