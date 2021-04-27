@@ -17,6 +17,7 @@ class Model extends DB
             //requete prepared
             $requete = $this->db->prepare($sql);
             $requete->execute($attributs);
+            return $requete;
         } else {
             $requete = $this->db->query($sql);
         }

@@ -50,26 +50,31 @@ class UserController
                     self::$erreur["avatar"] = "Le fichier avatar n'est pas au bon format.";
                 }
             }
-            var_dump(self::$erreur);
+
 
             if (count(self::$erreur) === 0) {
-                var_dump(self::$erreur);
+
                 $user = new UserModel();
                 //verifier la presence d'un mail identique attributs ["email"=>$post['email']]
                 $return = $user->findBy(['email' => $post['email']]);
-                //var_dump($return);
+
                 if (!$return) {
                     // trouver un moyen de recuperer l'id_user de mon nouvel enregistrement
                     // 50utilisateurs
                     //le 50eme est un gros con (il a un id_user =50)
                     // l'admin le delete (l'id_user = 50 ne seras pas disponible )
                     //je ne peux pas me contenter d'une simple incrementation sur l'id_user
-
-
-                    var_dump($user->insert($post));
+                    $user->insert($post);
+                    //recuperation du dernier id enregistrés
+                    $tbUser = $user->findALl();
+                    $max = count($tbUser) - 1;
+                    var_dump($tbUser[$max]->id_user);
+                } else {
+                    self::$erreur['email'] = 'cet utilisateur est deja enregistré.';
                 }
             }
         }
+        var_dump(self::$erreur);
     }
 
     public static function verifInput($input, $obligatoire = false, $type = false)

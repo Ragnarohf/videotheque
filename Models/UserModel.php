@@ -20,20 +20,18 @@ class UserModel extends Model
     public function insert(array $attributs)
     {
         $this->db = Db::getInstance(); //$pdo
-        var_dump($attributs, $this->table, $this->db);
+
         $requete = $this->db->prepare("INSERT INTO $this->table (name,email,pwd,role,created_at) VALUES (:name, :email, :pwd, :role, :created_at)");
         $requete->bindValue(":name", $attributs['name'], PDO::PARAM_STR);
         $requete->bindValue(":email", $attributs['email'], PDO::PARAM_STR);
         $requete->bindValue(":pwd", $attributs['pwd'], PDO::PARAM_STR);
         $requete->bindValue(":role", $attributs['role'], PDO::PARAM_STR);
         $requete->bindValue(":created_at", $attributs['created_at'], PDO::PARAM_STR);
-        var_dump($requete);
-        var_dump($attributs);
+
 
         $requete->execute();
         // me permet de récuperer le dernier id enregistré
-        /* $last_id = $requete->lastInsertId();
-        var_dump($last_id); */
+
         // 
     }
 }
