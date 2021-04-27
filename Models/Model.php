@@ -23,9 +23,9 @@ class Model extends DB
         }
         return $requete;
     }
-    public function findAll()
+    public function findAll($order = Null)
     {
-        $requete = $this->requete("SELECT * FROM $this->table");
+        $requete = $this->requete("SELECT * FROM $this->table" . $order);
         $livres = $requete->fetchAll();
         return $livres;
     }

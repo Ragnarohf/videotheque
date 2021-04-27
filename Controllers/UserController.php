@@ -66,9 +66,16 @@ class UserController
                     //je ne peux pas me contenter d'une simple incrementation sur l'id_user
                     $user->insert($post);
                     //recuperation du dernier id enregistrés
-                    $tbUser = $user->findALl();
+                    $tbUser = $user->findALl(" ORDER BY id_user");
                     $max = count($tbUser) - 1;
-                    var_dump($tbUser[$max]->id_user);
+                    $lastId = $tbUser[$max]->id_user;
+                    var_dump($lastId);
+                    // echo ROOT./public/assets/img/upload
+                    if (count($post['avatar']) > 0) {
+                        $ext = explode("/", $post['avatar']['type']);
+                        var_dump($ext[1]);
+                        move_uploaded_file($post['avatar']['tmp_name'], '../../public/assets/img/upload/' . $lastId . "." . $ext[1]);
+                    }
                 } else {
                     self::$erreur['email'] = 'cet utilisateur est deja enregistré.';
                 }
