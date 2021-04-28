@@ -42,7 +42,7 @@ class FilmController
     {
         $filmModel = new FilmModel;
         $filmListBy = $filmModel->filmListBy($key, $value);
-        var_dump($filmListBy);
+
         return $filmListBy;
     }
 }

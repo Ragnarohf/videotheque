@@ -11,6 +11,7 @@ $filmController = new FilmController;
 $randomFilm = $filmController->randomFilm(3);
 
 ?>
+<h2 class="text-center">Notre IA a selectionné pour vous :</h2>
 <section class="d-flex justify-content-between flex-wrap container">
     <?php
     for ($i = 0; $i < count($randomFilm); $i++) { ?>
