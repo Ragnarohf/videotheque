@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\FilmModel;
 
-require_once("../../vendor/autoload.php");
+require_once("../vendor/autoload.php");
 
 use Gumlet\ImageResize;
 
@@ -42,7 +42,6 @@ class FilmController
     {
         $filmModel = new FilmModel;
         $filmListBy = $filmModel->filmListBy($key, $value);
-
         return $filmListBy;
     }
 }

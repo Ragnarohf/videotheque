@@ -53,7 +53,7 @@ ol {
   margin-bottom: -8px;
 }
 #footer {
-  background: url(images/footer-tail.gif) repeat-x left top #bfbfbf;
+  background: url(../img/footer-tail.gif) repeat-x left top #bfbfbf;
   color: #1d1d1d;
   font-size: 0.86em;
   line-height: 1.667em;
@@ -92,10 +92,10 @@ ol {
 }
 /* TAILING */
 .tail-top {
-  background: url(images/tail-top.gif) left top repeat-x #1d1d1d;
+  background: url(../img/tail-top.gif) left top repeat-x #1d1d1d;
 }
 .tail-bottom {
-  background: url(images/tail-bottom.gif) left bottom repeat-x;
+  background: url(../img/tail-bottom.gif) left bottom repeat-x;
 }
 /* FORMS */
 #contacts-form {
@@ -129,7 +129,7 @@ ol {
   width: 674px;
   height: 174px;
   padding: 2px 28px 1px 28px;
-  background: url(images/textarea-bg.gif) no-repeat left top;
+  background: url(../img/textarea-bg.gif) no-repeat left top;
   border: 0;
   color: #fff;
   margin-bottom: 15px;
@@ -194,7 +194,7 @@ ol {
 .sitemap-list li {
   padding: 0 0 0 10px;
   line-height: 1.714em;
-  background: url(images/arrow.gif) no-repeat left 8px;
+  background: url(../img/arrow.gif) no-repeat left 8px;
 }
 .sitemap-list li a {
   color: #d72a18;
@@ -284,7 +284,7 @@ h4 {
 .link1 {
   display: block;
   float: left;
-  background: url(images/link1-right.png) no-repeat right top;
+  background: url(../img/link1-right.png) no-repeat right top;
   color: #fff;
   text-decoration: none;
   line-height: 1em;
@@ -297,17 +297,17 @@ h4 {
   display: block;
   float: left;
   padding: 0 5px;
-  background: url(images/link1-left.png) no-repeat left top;
+  background: url(../img/link1-left.png) no-repeat left top;
 }
 .link1 span span {
   display: block;
-  background: url(images/link1-tail.gif) repeat-x left top;
+  background: url(../img/link1-tail.gif) repeat-x left top;
   padding: 8px 15px;
 }
 .link2 {
   display: block;
   float: left;
-  background: url(images/link2-right.gif) no-repeat right top;
+  background: url(../img/link2-right.gif) no-repeat right top;
   color: #fff;
   cursor: pointer;
   text-decoration: none;
@@ -320,11 +320,11 @@ h4 {
   display: block;
   float: left;
   padding: 0 6px;
-  background: url(images/link2-left.gif) no-repeat left top;
+  background: url(../img/link2-left.gif) no-repeat left top;
 }
 .link2 span span {
   display: block;
-  background: url(images/link2-tail.gif) repeat-x left top;
+  background: url(../img/link2-tail.gif) repeat-x left top;
   padding: 9px 15px 10px 15px;
 }
 .line-hor {
@@ -334,21 +334,20 @@ h4 {
   width: 918px;
   height: 8px;
   margin-left: 11px;
-  background: url(images/line-hor.gif) repeat-x left top;
+  background: url(../img/line-hor.gif) repeat-x left top;
   z-index: 1;
   position: relative;
 }
 /* BOXES */
 .box {
-  background: #000;
-  width: 100%;
+  max-width: 100%;
   margin-top: -3px;
 }
 .box .border-left {
-  background: url(images/border-left.gif) repeat-y left top;
+  background: url(../img/border-left.gif) repeat-y left top;
 }
 .box .border-right {
-  background: url(images/border-right.gif) repeat-y right top;
+  background: url(../img/border-right.gif) repeat-y right top;
 }
 .box .inner {
   padding: 28px 50px 25px 50px;
@@ -398,7 +397,7 @@ h4 {
   width: 184px;
   height: 56px;
   float: left;
-  background-image: url(images/nav-bg.gif);
+  background-image: url(../img/nav-bg.gif);
   background-repeat: no-repeat;
   background-position: 0 0;
   text-align: center;
@@ -406,7 +405,7 @@ h4 {
 #header .row-2 ul li a:hover,
 #header .row-2 ul li a.active {
   color: #d72a18;
-  background-image: url(images/nav-act.gif);
+  background-image: url(../img/nav-act.gif);
 }
 /* CONTENT */
 #content .content {
@@ -427,13 +426,13 @@ h4 {
 }
 /* FOOTER */
 #footer .left {
-  background: url(images/footer-left.gif) no-repeat left top;
+  background: url(../img/footer-left.gif) no-repeat left top;
 }
 #footer .right {
   min-height: 89px;
   height: auto !important;
   height: 89px;
-  background: url(images/footer-right.gif) no-repeat right top;
+  background: url(../img/footer-right.gif) no-repeat right top;
   text-align: center;
 }
 #footer .inside {
@@ -446,7 +445,7 @@ h4 {
   width: 940px;
   height: 322px;
   position: relative;
-  background: url(images/banner-bg.gif) no-repeat left top;
+  background: url(../img/banner-bg.gif) no-repeat left top;
   color: #1d1d1d;
 }
 #slogan .image {
@@ -456,7 +455,7 @@ h4 {
   z-index: 100;
   width: 572px;
   height: 348px;
-  background: url(images/banner-img.png) no-repeat left top;
+  background: url(../img/banner-img.png) no-repeat left top;
 }
 #slogan p {
   margin-bottom: 23px;
