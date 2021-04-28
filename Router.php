@@ -12,7 +12,8 @@ class Router
         'searchFilm' => 'film/filmListBy.php',
         'registration' => 'user/add.php',
         'login' => 'user/login.php',
-        'logout' => 'user/logout.php'
+        'logout' => 'user/logout.php',
+        'newComment' => 'comment/newComment.php'
     ];
     public static $public;
     public static $view;
@@ -45,6 +46,8 @@ class Router
             include("Views/" . self::$route['login']);
         } else if ($url === "/videotheque/logout/") {
             include("Views/" . self::$route['logout']);
+        } else if ($url === "/videotheque/newComment/") {
+            include("Views/" . self::$route['newComment']);
         } else {
             include("Views/" . self::$route['home']);
         }

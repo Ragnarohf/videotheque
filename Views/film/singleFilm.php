@@ -5,6 +5,7 @@ use App\Router;
 
 $public = Router::$public;
 $view = Router::$view;
+$sessionActive = Router::$sessionActive;
 include($view . "header.php");
 $film = [];
 if (!empty($_GET['id'])) {
@@ -47,8 +48,10 @@ if (!empty($_GET['id'])) {
         </div>
     </div>
 </section>
-<section>
-    <?php include("randomFilm.php"); ?>
-</section>
+<?php if ($sessionActive) {
+    echo '<a href="newComment?id=' . $_GET['id'] . '">Ajouter un commentaire</a>';
+} ?>
+<?php include("randomFilm.php"); ?>
+
 <?php
 include($view . "footer.php");
