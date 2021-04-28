@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 26 avr. 2021 à 07:52
+-- Généré le : mer. 28 avr. 2021 à 13:03
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `videotheque`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id_comment` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `text` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id_comment`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -5891,10 +5908,35 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
   `name` varchar(120) NOT NULL,
-  `role` enum('role_user','role_contibutor','role_admin','') NOT NULL,
-  `avatar` varchar(15) NOT NULL,
+  `role` varchar(20) NOT NULL,
+  `avatar` varchar(15) DEFAULT NULL,
   `created_at` date NOT NULL,
   PRIMARY KEY (`id_user`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `email`, `pwd`, `name`, `role`, `avatar`, `created_at`) VALUES
+(13, 'sandranicouette@dodo.zerfzetzert', '$2y$10$RrrEisAThMjUcLdGIFJbA.lhyWxGxpcfyNsTC6/birrpzT4JmYPqG', 'Nicouette Sandra', 'role_user', NULL, '2021-04-27'),
+(14, 'admin@admin.com', '$2y$10$qvXNWpbgjVqsA2KBq42tVuBhJ9ldjrpDIpKeJusiQiBzedKdtuUju', 'admin admin', 'role_user', NULL, '2021-04-27'),
+(15, 'admin@admin.zerzer', '$2y$10$iqS5X30dSMGd4QxKP5d0BevEEc3yl3vsWYSxpPbHEYnA0.ik7I.UC', 'admin admin', 'role_user', NULL, '2021-04-27'),
+(16, 'tonystark@admin.com', '$2y$10$Mkts9XndBVf97pjjkPtPvOS7uSsg6P2cX3sPr6JacPJpdPzCm2Ue2', 'tony stark', 'role_user', '16.jpeg', '2021-04-27');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user_comment`
+--
+
+DROP TABLE IF EXISTS `user_comment`;
+CREATE TABLE IF NOT EXISTS `user_comment` (
+  `id_user_comment` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `id_comment` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id_user_comment`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 

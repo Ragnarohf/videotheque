@@ -2,47 +2,46 @@
 
 namespace App\Models;
 
-use App\Models\DB;
+use App\Models\Db;
 
-class Model extends DB
+class Model extends Db
 {
     protected $table;
     protected $db;
 
-    public function requete(string $sql, array $attributs = Null)
+    public function requete(string $sql, array $attributs = null)
     {
-        //recupere l'instance db
-        $this->db = DB::getInstance();
+        //recupérer l'instance db 
+        $this->db = Db::getInstance(); //$pdo
         if ($attributs !== null) {
             //requete prepared
             $requete = $this->db->prepare($sql);
             $requete->execute($attributs);
             return $requete;
         } else {
-            $requete = $this->db->query($sql);
+            return $this->db->query($sql);
         }
-        return $requete;
     }
-    public function findAll($order = Null)
+    public function findAll($order = NULL)
     {
-        $requete = $this->requete("SELECT * FROM $this->table" . $order);
-        $livres = $requete->fetchAll();
-        return $livres;
+        $requete = $this->requete("SELECT * FROM $this->table " . $order);
+
+        return $requete->fetchAll();
     }
-
-
+    //tableau d'attributs
+    //select * from livre where auther = x and titre = y
+    //attributs = ['auteur'=>'x',"titre"=>'y']
+    //select * from livre where auteur = x
     public function findby(array $attributs)
     {
         $tableauCle = [];
 
         foreach ($attributs as $key => $value) {
             $tableauCle[] = "$key = :$key";
-            // on a tout donné pour cette value Rest In Peace
             $value;
         }
-        // select * from livre where auteur =:auteur and livre =:livre
         $meschamps = implode(' AND', $tableauCle);
-        $requete = $this->requete(" SELECT * from $this->table where $meschamps", $attributs);
+        $requete = $this->requete("SELECT * from $this->table where $meschamps", $attributs);
         return $requete->fetchAll();
     }
     public function update(array $attributs, array $condition)
@@ -57,13 +56,9 @@ class Model extends DB
             $tabchampsCondition[] = "$key = :$key";
             $value;
         }
-
-
         $meschamps = implode(' AND', $tableauCle);
         $meschampsCondition = implode(' AND', $tabchampsCondition);
         $this->requete("UPDATE $this->table SET $meschamps where $meschampsCondition", array_merge($attributs, $condition));
-        // echo $requete;
-
     }
     public function delete($attributs)
     {
@@ -73,15 +68,7 @@ class Model extends DB
             $tableauCle[] = "$key = :$key";
             $value;
         }
-        //select * from livre where auteur = :auteur and livre = :livre
         $meschamps = implode(' AND', $tableauCle);
-
         $requete = $this->requete("DELETE  from $this->table where $meschamps", $attributs);
-    }
-    public function insert(array $attributs)
-    {
-        return $attributs;
-        // $requete = $this->requete("INSERT INTO  $this->table (champs)VALUES (valeurs));
-
     }
 }

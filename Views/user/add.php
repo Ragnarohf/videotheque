@@ -13,7 +13,7 @@ $form = UserController::validator($_POST, $_FILES);
 ?>
 <h1>Inscrivez-vous</h1>
 <div id="formUser">
-    <form class="formulaire" action="add.php" method="post" enctype="multipart/form-data">
+    <form class="formulaire" action="registration" method="post" enctype="multipart/form-data">
         <input type="text" name="name" id="name" placeholder="Nom" value="<?= !empty($form[1]['name']) ? $form[1]['name'] : NULL ?>">
         <div class="inputError text-danger"><?= !empty($form[0]['name']) ? $form[0]['name'] : NULL ?></div>
         <input type="email" name="email" id="email" placeholder="Email" value="<?= !empty($form[1]['email']) ? $form[1]['email'] : NULL ?>">
@@ -29,7 +29,7 @@ $form = UserController::validator($_POST, $_FILES);
         <div class="inputError text-danger"><?= !empty($form[0]['avatar']) ? $form[0]['avatar'] : NULL ?></div>
         <label for="rgpd">En cliquant sur cette case vous acceptez les cgu.</label>
         <input type="checkbox" name="rgpd" id="rgpd">
-        <div class="inputError text-danger"><?= !empty($form[0]['rgpd']) ? $form[0]['rgpd'] : NULL ?>rgpd</div>
+        <div class="inputError text-danger"><?= !empty($form[0]['rgpd']) ? $form[0]['rgpd'] : NULL ?></div>
         <input type="submit" value="Envoyer">
     </form>
 </div>

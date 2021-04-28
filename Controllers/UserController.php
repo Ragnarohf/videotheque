@@ -90,7 +90,9 @@ class UserController
                         $image->save("../public/assets/img/upload/" . $lastId . "." . $ext[1]);
                         //update => inserer la nouvelle url d'avatar
                         $user->update(['avatar' => $lastId . "." . $ext[1]], ['id_user' => $lastId]);
-                        header("Location: ./");
+                        $result = $user->findby(['id_user' => $lastId]);
+                        $_SESSION['user'] = $result[0];
+                        header("Location: home");
                     }
                 } else {
                     self::$erreur['email'] = "Cette utilisateur est déjà enregistré.";
@@ -100,6 +102,39 @@ class UserController
             return [self::$erreur, $post];
         }
     }
+
+    public static function login($post)
+    {
+        if (!empty($post) && isset($post)) {
+
+            $user = new UserModel();
+            //email
+            $post['email'] = self::verifInput('email', true);
+            if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+                self::$erreur["email"] = "L'adresse email n'est pas valide!";
+            }
+            $post['pwd'] = self::verifInput('pwd', true);
+
+            $result = $user->findby(['email' => $post['email']]);
+
+            if ($result) {
+                if (password_verify($post['pwd'], $result[0]->pwd)) {
+                    var_dump($result[0]);
+                    // login
+                    if (count(self::$erreur) === 0) {
+                        $_SESSION['user'] = $result[0];
+                        header("Location:home");
+                    }
+                } else {
+                    self::$erreur["pwd"] = "password invalid!";
+                }
+            } else {
+                self::$erreur["email"] = "inconnu";
+            }
+        }
+    }
+
+
     public static function verifInput($input, $obligatoire = false, $type = false)
     {
         if (!empty($_POST[$input]) && isset($_POST[$input])) {

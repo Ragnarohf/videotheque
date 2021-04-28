@@ -5,6 +5,7 @@ use App\Router;
 
 $public = Router::$public;
 $view = Router::$view;
+$sessionActive = Router::$sessionActive;
 include($view . "header.php");
 
 $listFilm = [];
