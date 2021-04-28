@@ -24,7 +24,7 @@ if (!empty($_GET['id'])) {
                     <p><?= $film[0]->plot ?></p>
                     <div class="img-box1">
                         <?php if (file_exists("$public/assets/img/posters/" . $film[0]->id . ".jpg")) { ?>
-                            <img src="../public/assets/img/posters/<?= $film[0]->id ?>.jpg" class="card-img-top " alt="..." style="max-width: 220px;">
+                            <img src="/videotheque/public/assets/img/posters/<?= $film[0]->id ?>.jpg" class="card-img-top " alt="..." style="max-width: 220px;">
                         <?php } else { ?>
                             <img src="https://picsum.photos/220/330" class="card-img-top" alt="..." style="max-width: 220px;">
                         <?php } ?>
@@ -33,13 +33,13 @@ if (!empty($_GET['id'])) {
                     <p><?= $film[0]->genres ?> - <?= $film[0]->year ?></p>
                     <p>casting : <?php
                                     foreach ($film[0]->cast as $value) { ?>
-                            <a href="filmListBy.php?key=cast&value=<?= $value ?>"><?= $value ?></a>
+                            <a href="filmListBy?key=cast&value=<?= $value ?>"><?= $value ?></a>
                         <?php } ?>
                     </p>
                     <p><?= $film[0]->directors ?></p>
                     <p id='rating'>
                         <?php for ($i = 0; $i < $film[0]->rating; $i++) { ?>
-                            <span class="star"><img src="../public/assets/img/star-solid.svg" style="max-width: 30px;"></span>
+                            <span class="star"><img src="/videotheque/public/assets/img/star-solid.svg" style="max-width: 30px;"></span>
                         <?php } ?>
                     </p>
                 </div>

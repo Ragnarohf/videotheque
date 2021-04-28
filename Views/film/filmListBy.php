@@ -18,7 +18,7 @@ if (!empty($_GET['key'])) {
     <?php for ($i = 0; $i < count($listFilm); $i++) { ?>
         <div class="card my-2" style="width: 14rem;">
             <?php if (file_exists("$public/assets/img/posters/" . $listFilm[$i]->id . ".jpg")) { ?>
-                <img src="../public/assets/img/posters/<?= $listFilm[$i]->id ?>.jpg" class="card-img-top" alt="...">
+                <img src="/videotheque/public/assets/img/posters/<?= $listFilm[$i]->id ?>.jpg" class="card-img-top" alt="...">
             <?php } else { ?>
                 <img src="https://picsum.photos/220/330" class="card-img-top" alt="...">
             <?php } ?>

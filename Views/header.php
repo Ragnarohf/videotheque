@@ -20,11 +20,11 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="./">Home</a>
+            <a class="nav-link" href="home">Home</a>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./user/add.php">Inscrivez-vous</a>
+            <a class="nav-link" href="registration">Inscrivez-vous</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Pricing</a>
