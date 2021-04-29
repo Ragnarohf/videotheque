@@ -3,8 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+
 require_once("../vendor/autoload.php");
+
 use Gumlet\ImageResize;
+
 class UserController
 {
 
@@ -33,7 +36,7 @@ class UserController
             if ($post['pwd'] !== $post['pwd2']) {
                 self::$erreur["pwd"] = "Les deux mots de passe ne correspondent pas!";
             } else {
-                $post['pwd'] = password_hash($post['pwd'],PASSWORD_DEFAULT);
+                $post['pwd'] = password_hash($post['pwd'], PASSWORD_DEFAULT);
             }
             $post['role'] = 'role_user';
             $post['created_at'] = date("Y-m-d");
@@ -57,14 +60,14 @@ class UserController
                 }
             }
 
-            
+
             if (count(self::$erreur) === 0) {
                 $user = new UserModel();
-                
+
                 // verifier la présence d'un mail identique attributs ["email"=>$poste['email']]
-                $return = $user->findby(['email'=>$post['email']]);
-                $return = false;//test
-                if(!$return){
+                $return = $user->findby(['email' => $post['email']]);
+                $return = false; //test
+                if (!$return) {
                     $user->insert($post);
                     // 50 utilisateurs
                     // le 50e est un gros con (il a un id_user = 50)
@@ -76,18 +79,18 @@ class UserController
                     var_dump($tbUser);
                     $max = count($tbUser)-1;
                     var_dump($tbUser[$max]->id_user); */
-                    $lastId = $tbUser[count($tbUser)-1]->id_user;
+                    $lastId = $tbUser[count($tbUser) - 1]->id_user;
                     //echo  ROOT.'/public/assets/img/upload';
-                    if(!empty($post['avatar']) && isset($post['avatar'])){
+                    if (!empty($post['avatar']) && isset($post['avatar'])) {
                         $ext = explode("/", $post['avatar']['type']);
-                        move_uploaded_file ( $post['avatar']['tmp_name'] , "../public/assets/img/upload/".$lastId.".".$ext[1] );
+                        move_uploaded_file($post['avatar']['tmp_name'], "../public/assets/img/upload/" . $lastId . "." . $ext[1]);
                         //modifier mon image en taille avec ImageResize
-                        $image = new ImageResize("../public/assets/img/upload/".$lastId.".".$ext[1]);
+                        $image = new ImageResize("../public/assets/img/upload/" . $lastId . "." . $ext[1]);
                         $image->resizeToWidth(150);
-                        $image->save("../public/assets/img/upload/".$lastId.".".$ext[1]);
+                        $image->save("../public/assets/img/upload/" . $lastId . "." . $ext[1]);
                         //update => inserer la nouvelle url d'avatar
-                        $user->update(['avatar'=>$lastId.".".$ext[1]], ['id_user'=>$lastId]);
-                        $result = $user->findby(['id_user'=>$lastId]);
+                        $user->update(['avatar' => $lastId . "." . $ext[1]], ['id_user' => $lastId]);
+                        $result = $user->findby(['id_user' => $lastId]);
                         $_SESSION['user'] = $result[0];
                         header("Location: home");
                     }
@@ -96,13 +99,14 @@ class UserController
                 }
             }
             // je renvoie ici un tableau qui contiendra les erreurs et les dionnées déjà envoyées par l'utilisateur
-            return [self::$erreur,$post];
+            return [self::$erreur, $post];
         }
     }
 
-    public static function login($post){
+    public static function login($post)
+    {
         if (!empty($post) && isset($post)) {
-            
+
             $user = new UserModel();
             //email
             $post['email'] = self::verifInput('email', true);
@@ -110,14 +114,14 @@ class UserController
                 self::$erreur["email"] = "L'adresse email n'est pas valide!";
             }
             $post['pwd'] = self::verifInput('pwd', true);
-            
-            $result = $user->findby(['email'=>$post['email']]);
-            
-            if($result){
+
+            $result = $user->findby(['email' => $post['email']]);
+
+            if ($result) {
                 if (password_verify($post['pwd'], $result[0]->pwd)) {
                     // login
                     if (count(self::$erreur) === 0) {
-                        $_SESSION['user'] = $result[0];   
+                        $_SESSION['user'] = $result[0];
                         header("Location:home");
                     }
                 } else {
@@ -127,20 +131,25 @@ class UserController
                 self::$erreur["email"] = "inconnu";
             }
         }
-
     }
-    
+
     /**
      * adminFindAll
      *
      * @return void
      */
-    public function adminFindAll(){
+    public function adminFindAll()
+    {
         $user = new UserModel;
         $adminFindAll = $user->findAll();
         return $adminFindAll;
     }
 
+    public function deleteUser($id)
+    {
+        $userModel = new UserModel;
+        $userModel->delete(['id_user' => $id]);
+    }
     public static function verifInput($input, $obligatoire = false, $type = false)
     {
         if (!empty($_POST[$input]) && isset($_POST[$input])) {

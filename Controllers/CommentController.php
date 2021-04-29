@@ -31,13 +31,13 @@ class CommentController
             }
         }
     }
-    public static function displayComment($id)
+    public function displayComment($id)
     {
         $commentModel = new CommentModel;
         $displayComment = $commentModel->displayComment($id);
         // Une boucle afin de convertir mes dates
         $i = 0;
-           
+
         while ($i < count($displayComment)) {
             $timestamp = strtotime($displayComment[$i]->created_at);
             $newDate = date("d-m-Y H:i:s", $timestamp);
@@ -45,7 +45,23 @@ class CommentController
             $i++;
         }
         // ajout d'une entrée pour afficher le nombre de comments
-        array_push($displayComment,count($displayComment));
+        array_push($displayComment, count($displayComment));
         return $displayComment;
+    }
+    public function selectCommentsForAdmin()
+    {
+        $commentModel = new CommentModel;
+        $listCommentAdmin = $commentModel->selectCommentsForAdmin();
+        return $listCommentAdmin;
+    }
+    public function valideComment($id)
+    {
+        $comment = new CommentModel;
+        $comment->update(['validate' => 1], ["id_comment" => $id]);
+    }
+    public function deleteComment($id)
+    {
+        $comment = new CommentModel;
+        $comment->deleteUserComment($id);
     }
 }

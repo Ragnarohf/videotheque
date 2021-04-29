@@ -15,8 +15,12 @@ class Router
         'login' => 'user/login.php',
         'logout' => 'user/logout.php',
         'admin' => 'user/admin.php',
+        'deleteUser' => 'user/delete.php',
         'newComment' => 'comment/newComment.php',
-        'displayComment' => 'comment/displayComment.php'
+        'displayComment' => 'comment/displayComment.php',
+        'valideComment' => 'comment/valideComment.php',
+        'deleteComment' => 'comment/deleteComment.php'
+
     ];
     // plus malin : un tableau $route avec view ET controller
     /* 
@@ -80,6 +84,7 @@ class Router
             include("Views/" . self::$route['home']);
         }
         /*
+
         if($url === "/videotheque/home"){
             include("Views/".self::$route['home']);
         }
