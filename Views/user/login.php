@@ -2,10 +2,9 @@
 
 use App\Controllers\UserController;
 use App\Router;
-
 $public = Router::$public;
 $view = Router::$view;
-include($view . "header.php");
+include($view."header.php");
 
 
 $form = UserController::login($_POST);
@@ -26,5 +25,5 @@ $form = UserController::login($_POST);
     </form>
 </div>
 <?php
-include($view . "footer.php");
+include($view."footer.php");
 ?>

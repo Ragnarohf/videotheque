@@ -24,7 +24,7 @@ class Model extends Db
     }
     public function findAll($order = NULL)
     {
-        $requete = $this->requete("SELECT * FROM $this->table " . $order);
+        $requete = $this->requete("SELECT * FROM $this->table ".$order);
 
         return $requete->fetchAll();
     }
@@ -70,5 +70,7 @@ class Model extends Db
         }
         $meschamps = implode(' AND', $tableauCle);
         $requete = $this->requete("DELETE  from $this->table where $meschamps", $attributs);
+
     }
+    
 }

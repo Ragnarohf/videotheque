@@ -2,13 +2,12 @@
 
 use App\Controllers\UserController;
 use App\Router;
-
 $public = Router::$public;
 $view = Router::$view;
-include($view . "header.php");
+include($view."header.php");
 
 
-$form = UserController::validator($_POST, $_FILES);
+$form = UserController::validator($_POST,$_FILES);
 
 ?>
 <h1>Inscrivez-vous</h1>
@@ -34,5 +33,5 @@ $form = UserController::validator($_POST, $_FILES);
     </form>
 </div>
 <?php
-include($view . "footer.php");
+include($view."footer.php");
 ?>

@@ -28,8 +28,24 @@ class CommentController
             $post['text'] = UserController::verifInput('text', true);
             if (count(self::$erreur) === 0) {
                 $comment->newComment($post, $id_film, $id_user);
-                echo "YOUPI";
             }
         }
+    }
+    public static function displayComment($id)
+    {
+        $commentModel = new CommentModel;
+        $displayComment = $commentModel->displayComment($id);
+        // Une boucle afin de convertir mes dates
+        $i = 0;
+           
+        while ($i < count($displayComment)) {
+            $timestamp = strtotime($displayComment[$i]->created_at);
+            $newDate = date("d-m-Y H:i:s", $timestamp);
+            $displayComment[$i]->created_at = $newDate;
+            $i++;
+        }
+        // ajout d'une entrée pour afficher le nombre de comments
+        array_push($displayComment,count($displayComment));
+        return $displayComment;
     }
 }
